@@ -11,3 +11,15 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+import 'bootstrap'
+import '../src/application.scss'
+
+require("@rails/ujs").start()
+require("turbolinks").start()
+require("@rails/activestorage").start()
+require("channels")
+require('bootstrap/dist/js/bootstrap.min.js')
+
+const images = require.context('../images', true)
+const imagePath = (name) => images(name, true)

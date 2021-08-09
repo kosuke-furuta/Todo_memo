@@ -1,0 +1,35 @@
+@import '~bootstrap/scss/bootstrap';
+
+
+
+.box {
+  position: relative;
+}
+
+.box p {  
+  position: absolute;
+  color: black;
+  top: 0;
+  left: 0;
+}
+
+.box img {
+  width: 100%;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
