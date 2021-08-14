@@ -2,7 +2,6 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    debugger
   end
 
   def new
@@ -12,6 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      flash[:success] = "Welcome to the TODO MEMO APP!"
+      redirect_to @user
     else
       render 'new'
     end
