@@ -1,0 +1,5 @@
+Maya:
+  name: Yoshida Maya
+  email: maya@example.com
+  password_digest: <%= User.digest('password') %>
+  
