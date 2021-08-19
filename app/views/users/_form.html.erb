@@ -1,6 +1,23 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
+  <% if @user.image? %>
+    <%= image_tag @user.image.url %>
+  <% else %>
+    <%= image_tag "/assets/default.jpg" %>
+   <% end %>
+  <div class= "accout-page__inner--icon">
+    <div class= "account-page__inner--icon__label">
+      <div class= "account-page__inner--icon__input">
+        <% if @image.present? %>
+          <%= image_tag @image.url, class: 'account-page__inner--icon__input__image', width: '100%' %>
+          <div class= "account-page__inner--icon__input__image2">
+            <%= f.file_field :image , class: 'account-page__inner--icon__input__btn', id: 'upload-icon' %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+
   <%= f.label :name %>
   <%= f.text_field :name, class: 'form-control' %>
 

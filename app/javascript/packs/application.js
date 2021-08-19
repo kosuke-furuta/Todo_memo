@@ -13,7 +13,8 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import 'bootstrap'
-import '../src/application.scss'
+import '../stylesheets/application.scss'
+import '../src/icon_preview.js'
 
 require("@rails/ujs").start()
 require("turbolinks").start()
