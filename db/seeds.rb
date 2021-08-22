@@ -1,16 +1,17 @@
 # メインのサンプルユーザーを1人作成する
 User.create!(name: "Yoshida Maya",
-        email: "Maya@example.org",
-        password: "password",
-        password_confirmation: "password")
+             email: "Maya@example.jp",
+             password: "password",
+             password_confirmation: "password",
+             admin: true)
 
 # 追加のユーザーをまとめて生成する
-99.times do |n|
- name  = Faker::Name.name
- email = "example-#{n+1}@railstutorial.org"
+30.times do |n|
+ name  = Gimei.unique.name.kanji
+ email = "example_#{n+1}@example.co.jp"
  password = "password"
  User.create!(name: name,
-        email: email,
-        password: password,
-        password_confirmation: password)
+              email: email,
+              password: password,
+              password_confirmation: password)
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_17_214048) do
+ActiveRecord::Schema.define(version: 2021_08_22_092221) do
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2021_08_17_214048) do
     t.string "password_digest"
     t.string "remember_digest"
     t.string "image"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

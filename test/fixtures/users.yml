@@ -2,8 +2,10 @@ Maya:
   name: Yoshida Maya
   email: maya@example.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
-archer:
-  name: Sterling Archer
-  email: duchess@example.gov
+Yuto:
+  name: Yuto Nagtomo
+  email: yuto@example.com
   password_digest: <%= User.digest('password') %>
+  
