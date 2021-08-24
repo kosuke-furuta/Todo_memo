@@ -16,6 +16,17 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  config.action_mailer.default_url_options = {  :host => 'http://ipアドレス'or'ドメイン名' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:"smtp.gmail.com",
+    domain: 'gmail.com',
+    port:587,
+    user_name: Rails.application.credentials.gmail[:mail_address],
+    password: Rails.application.credentials.gmail[:app_password],
+    authentication: :login
+  }
+
   # Ensures that a master key has been made available in either ENV["RAILS_MASTER_KEY"]
   # or in config/master.key. This key is used to decrypt credentials (and other encrypted files).
   # config.require_master_key = true
