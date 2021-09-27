@@ -3,16 +3,16 @@
 <p>Hi <%= @user.name %>,</p>
 
 <p>
-  Welcome to the ToDo Memo App! Click on the link below to activate your account:
+  ToDoメモアプリへようこそ！ 以下のリンクをクリックして、アカウントをアクティブ化してください。
 </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+<%= link_to "有効化", edit_account_activation_url(@user.activation_token,
                               email: @user.email) %>
 
-<p>■About this email</p>
+<p>■このメールについて</p>
 
-<p>This is just an email to register your portfolio.</p>
+<p>これはポートフォリオを登録するための単なるメールです。</p>
 
-<p>I haven't received a reply about this email.</p>
+<p>このメールについての返信はありません。</p>
 
-<p>If you have no idea, delete it.</p>
+<p>わからない場合は削除してください。</p>

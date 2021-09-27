@@ -1,14 +1,14 @@
 Hi <%= @user.name %>,
 
 
-Welcome to the ToDo Memo App! Click on the link below to activate your account:
+ToDoメモアプリへようこそ！ 以下のリンクをクリックして、アカウントをアクティブ化してください。
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
 
-■About this email
+■このメールについて
 
-This is just an email to register your portfolio.
+これはあなたのポートフォリオを登録するための単なるメールです。
 
-I haven't received a reply about this email.
+このメールについての返信はありません。
 
-If you have no idea, delete it.
+わからない場合は削除してください。

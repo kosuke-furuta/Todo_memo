@@ -1,16 +1,24 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="col-md-4">
-    <section class="user_info">
-      <h1>
+<div class="container">
+  <div class="row">
+    <aside class="col-sm-12 col-md-6">
+      <div class="image">
         <% if @user.image? %>
-          <%= image_tag @user.image.thmud.url %>
+          <%= image_tag @user.image.url %>
         <% else %>
-          <%= image_tag "/images/icon/no-image.png" %>
+          <%= image_tag('/images/icon/no-image.png') %>
         <% end %>
-        <%= @user.name %>
-        <%= @user.email %>
-      </h1>
-    </section>
-  </aside>
+      </div>
+    </aside>
+    <div class="col-md-6">
+      <section class="user_info">
+        <h1>
+          <%= @user.name %>
+        </h1>
+        <p>
+          <%= @user.email %>
+        <p>
+      </section>
+    </div> 
+  </div>
 </div>

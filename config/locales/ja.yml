@@ -1,8 +1,8 @@
 ja:
-  views:
-    pagination:
-      first: '最初'
-      last: '最後'
-      previous: '前'
-      next: '次'
-      truncate: '...'
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"

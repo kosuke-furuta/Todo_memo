@@ -13,9 +13,9 @@ Yuto:
   activated: true
   activated_at: <%= Time.zone.now %>
 
-oosako:
-  name: oosako
-  email: oosako@example.com
+osako:
+  name: osako
+  email: osako@example.com
   password_digest: <%= User.digest('password') %>
   activated: true
   activated_at: <%= Time.zone.now %>

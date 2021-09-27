@@ -1,25 +1,25 @@
 <%= form_with(model: @user, local: true) do |f| %>
   <%= render 'shared/error_messages', object: @user %>
 
-  <% if @user.image? %>
-    <%= image_tag @user.image.thmud.url %>
-  <% else %>
-    <%= image_tag "/images/icon/no-image.png" %>
-  <% end %>
+  <div class="form-item">
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
 
-  <%= f.file_field :image %>
+  <div class="form-item">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email, class: 'form-control' %>
+  </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name, class: 'form-control' %>
+  <div class="form-item">
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password, class: 'form-control' %>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, class: 'form-control' %>
+  <div class="form-item">
+    <%= f.label :password_confirmation, "パスワードの確認" %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password, class: 'form-control' %>
-
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+  <%= f.submit yield(:button_text), class: "btn btn-panel" %>
 <% end %>

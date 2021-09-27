@@ -32,7 +32,7 @@ class User < ApplicationRecord
   def authenticated?(attribute, token)
     digest = send("#{attribute}_digest")
     return false if digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(token)
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   # ユーザーのログイン情報を破棄する
@@ -64,10 +64,9 @@ class User < ApplicationRecord
   # パスワード再設定の属性を設定する
   def create_reset_digest
     self.reset_token = User.new_token
-    update_attribute(:reset_digest, User.digest(reset_token))
-    update_attribute(:reset_sent_at, Time.zone.now)
+    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
   end
-
+  
   # パスワード再設定のメールを送信する
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
@@ -87,6 +86,7 @@ class User < ApplicationRecord
 
   # 有効化トークンとダイジェストを作成および代入する
   def create_activation_digest
-    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
+    self.activation_token  = User.new_token
+    self.activation_digest = User.digest(activation_token)
   end
 end

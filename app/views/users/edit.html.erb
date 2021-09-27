@@ -1,12 +1,27 @@
 <% provide(:title, 'Edit user') %>
-<% provide(:button_text, 'Save changes') %>
-<h1>Update your profile</h1>
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= render 'form' %>
-    <div class="gravatar_edit">
-    
-      <a href="https://gravatar.com/emails" target="_blank">Change</a>
+<% provide(:button_text, '変更内容を保存する') %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-6">
+      <h1>プロフィールを編集</h1>
+      <div class= "form-image">
+        <%= form_with(model: @user, local: true) do |f| %>
+          <% if @user.image? %>
+            <%= image_tag @user.image.url %>
+          <% else %>
+            <%= image_tag('/images/icon/no-image.png') %>
+          <% end %>
+          <div class="form-image2">
+          <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+          </div>
+        <% end %>
+      </div>
     </div>
+    <div class="col-md-6 col-md-6">
+      <div class="form-wrapper">
+        <%= render 'form' %>
+      </div>
+    </div>
+
   </div>
 </div>
