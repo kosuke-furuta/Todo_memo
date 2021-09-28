@@ -15,8 +15,8 @@
   </tr>
   <tr>
     <th>説明</th>
-    <td><%= simple_format(h(@task.description),
-            {}, sanitize: false, wrapper_tag: "div") %></td>
+    <td><%= auto_link(simple_format(h(@task.description),
+            {}, sanitize: false, wrapper_tag: "div")) %></td>
   </tr>
   <tr>
     <th>作成日時</th>

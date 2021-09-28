@@ -10,6 +10,8 @@ class User < ApplicationRecord
   
   mount_uploader :image, ImageUploader
 
+  has_many :tasks
+
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

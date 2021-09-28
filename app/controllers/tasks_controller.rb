@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
+
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.order(created_at: :desc)
   end
 
   def show
-    @task = Task.find(params[:id])
   end
 
   def new
@@ -12,25 +13,26 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
   end
 
   def create
-    task = Task.new(task_params)
-    task.save!
-    flash[:info] = "メモ「#{task.name} 」を登録しました。"
-    redirect_to tasks_url
+    @task = Task.new(task_params.merge(user_id: current_user.id))
+
+    if @task.save
+      flash[:info] = "メモ「#{@task.name} 」を登録しました。"
+      redirect_to @task
+    else
+      render 'new'
+    end
   end
 
   def update
-    task = Task.find(params[:id])
     task.update!(task_params)
     flash[:info] = "メモ「#{task.name} 」を編集しました。"
     redirect_to tasks_url
   end
 
   def destroy
-    task = Task.find(params[:id])
     task.destroy
     flash[:indo] = "メモ「#{task.name}」を削除しました。"
     redirect_to tasks_url
@@ -39,5 +41,9 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:name, :description)
+  end
+
+  def set_task
+    @task = current_user.tasks.find(params[:id])
   end
 end

@@ -1,4 +1,6 @@
 <%= form_with(model: @task, local: true) do |f| %>
+  <%= render 'shared/tasks_error_messages', object: @task %>
+
   <div class="form-group">
     <%= f.label :name, "メモ名前" %>
     <%= f.text_field :name, class: 'form-control', id: 'task_name' %>
