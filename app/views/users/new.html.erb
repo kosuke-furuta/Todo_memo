@@ -2,7 +2,7 @@
 <% provide(:button_text, 'アカウントを作る') %>
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-6">
+    <div class="col-lg-6">
       <h1>サインアップ</h1>
       <div class= "form-image">
         <%= form_with(model: @user, local: true) do |f| %>
@@ -17,7 +17,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-6 col-md-6">
+    <div class="col-lg-6">
       <div class="form-wrapper">
         <%= render 'form' %>
       </div>

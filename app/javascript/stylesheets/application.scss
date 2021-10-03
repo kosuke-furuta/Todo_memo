@@ -132,10 +132,12 @@ aside {
   margin-bottom: 50px;
   text-align: center;
 }
-section {
-  padding: 30px 0;
+.user_info {
+  padding: 100px 0;
   margin-top: 10px;
   text-align: center;
+  h1, P { color: #666;
+  }
 }
 
 /* Signup Layout */
@@ -267,11 +269,6 @@ img {
 }
 
 /* Task Form */
-tbody td {
-  height: 50px;
-  border-bottom: #e9e9e9 solid 1px;
-}
-
 .btn-panel2 {
   width: auto;
   background: #f16272;
@@ -282,8 +279,6 @@ tbody td {
   font-family: 'Open Sans', sans-serif;
   font-size: 1.2em;
   letter-spacing: 0.05em;
-  text-align: center;
-  margin: 10px 0px 10px 0px;
 }
 
 .btn-panel2:hover {
@@ -291,17 +286,36 @@ tbody td {
   color: #fff;
 }
 
-.btn-outline-primary {
-  margin: 20px 0;
+.btn_wrapper {
+  text-align: right;
+  margin: 30px 30px 20px 0px;
 }
 
-.btn-outline-danger {
-  margin: 20px 0;
+table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
+th, td {
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+th {
+  font-weight: normal;
+  font-size: .875em;
+  color: #666;
+  background: #eee;
+  position: sticky;
+  top: 0;
+}
+
+.line {
+  border-bottom: 1px solid #e9e9e9;
+}
 
 /* スマホ */
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 480px) and (max-width: 767px) {
   .back {
     background-image: url('../images/todo-lists-5238324_640.jpeg');
     background-size: cover;
@@ -313,6 +327,20 @@ tbody td {
      P {
        font-size: 2.2em;
      }
+  }
+  .thead {
+    display: none;
+  }
+  td {
+    display: block;
+  }
+  .row_table th {
+    display: block;
+    width: 100%;
+  }
+  .row_table td {
+    display: block;
+    width: 100%;
   }
 }
 

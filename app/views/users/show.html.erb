@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="container">
   <div class="row">
-    <aside class="col-sm-12 col-md-6">
+    <aside class="col-lg-6">
       <div class="image">
         <% if @user.image? %>
           <%= image_tag @user.image.url %>
@@ -10,7 +10,7 @@
         <% end %>
       </div>
     </aside>
-    <div class="col-md-6">
+    <div class="col-lg-6">
       <section class="user_info">
         <h1>
           <%= @user.name %>
@@ -19,6 +19,20 @@
           <%= @user.email %>
         <p>
       </section>
-    </div> 
+    </div>
   </div>
 </div>
+<h1>Todo Memo 一覧</h1>
+<div class="btn_wrapper">
+  <%= link_to '新規登録', new_task_path, class: 'btn btn-panel2' %>
+</div>
+<table class="table">
+  <tr class="thead">
+    <th>ID</th>
+    <th>名前</th>
+    <th>登録日時</th>
+    <th>#</th>
+    <th>#</th>
+  </tr>
+<%= render @tasks %>
+</table>
