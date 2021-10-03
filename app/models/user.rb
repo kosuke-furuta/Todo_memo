@@ -10,7 +10,9 @@ class User < ApplicationRecord
   
   mount_uploader :image, ImageUploader
 
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
+
+  has_one_attached :image
 
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

@@ -2,22 +2,8 @@
 <% provide(:button_text, 'アカウントを作る') %>
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-md-12">
       <h1>サインアップ</h1>
-      <div class= "form-image">
-        <%= form_with(model: @user, local: true) do |f| %>
-          <% if @user.image? %>
-            <%= image_tag @user.image.url %>
-          <% else %>
-            <%= image_tag('/images/icon/no-image.png') %>
-          <% end %>
-          <div class="form-image2">
-          <%= f.file_field :image %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-lg-6">
       <div class="form-wrapper">
         <%= render 'form' %>
       </div>

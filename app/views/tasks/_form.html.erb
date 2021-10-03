@@ -1,5 +1,5 @@
 <%= form_with(model: @task, local: true) do |f| %>
-  <%= render 'shared/tasks_error_messages', object: @task %>
+  <%= render 'shared/error_messages', object: f.object %>
 
   <div class="form-group">
     <%= f.label :name, "メモ名前" %>
@@ -9,5 +9,8 @@
     <%= f.label :description, "説明" %>
     <%= f.text_area :description, rows: 5, class: 'form-control', id: 'task_description' %>
   </div>
+  <span class="image">
+    <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+  </span>
   <%= f.submit nil, class: 'btn btn-panel' %>
 <% end %>

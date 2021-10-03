@@ -1,5 +1,5 @@
 # メインのサンプルユーザーを1人作成する
-User.create!(name: "Yoshida Maya",
+User.create!(name: "吉田 麻也",
              email: "Maya@example.jp",
              password: "password",
              password_confirmation: "password",
@@ -9,7 +9,7 @@ User.create!(name: "Yoshida Maya",
 
 # 追加のユーザーをまとめて生成する
 30.times do |n|
- name  = Gimei.unique.name.kanji
+ name = Gimei.unique.name.kanji
  email = "example_#{n+1}@example.co.jp"
  password = "password"
  User.create!(name: name,

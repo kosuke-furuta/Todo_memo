@@ -1,7 +1,7 @@
 <h1>メモの詳細</h1>
 
 <div class="d-flex justify-content-end">
-  <%= link_to '一覧', user_url, class: 'nav-link' %>
+  <%= link_to '一覧', user_path(@user), class: 'nav-link' %>
 </div>
 <table class="table table-hover row_table">
   <tbody>
@@ -14,11 +14,6 @@
       <td><%= @task.name %></td>
     </tr>
     <tr>
-      <th>説明</th>
-      <td><%= auto_link(simple_format(h(@task.description),
-              {}, sanitize: false, wrapper_tag: "div")) %></td>
-    </tr>
-    <tr>
       <th>作成日時</th>
       <td><%= @task.created_at.strftime('%Y/%m/%d') %></td>
     </tr>
@@ -26,8 +21,16 @@
       <th>更新日時</th>
       <td class="line"><%= @task.updated_at.strftime('%Y/%m/%d') %></td>
     </tr>
+    <tr class="description">
+      <th>説明</th>
+      <td><%= auto_link(simple_format(h(@task.description),
+              {}, sanitize: false, wrapper_tag: "div")) %></td>
+    </tr>
   </tbody>
 </table>
+<span class="content">
+  <%= image_tag @task.image if @task.image.attached? %>
+</span>
 <div class="btn_wrapper">
   <%= link_to '編集', edit_task_path, class: 'btn btn-outline-primary' %>
   <%= link_to '削除', @task, method: :delete,

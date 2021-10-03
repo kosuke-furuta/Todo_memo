@@ -3,10 +3,12 @@
   <div class="row">
     <aside class="col-lg-6">
       <div class="image">
-        <% if @user.image? %>
-          <%= image_tag @user.image.url %>
-        <% else %>
-          <%= image_tag('/images/icon/no-image.png') %>
+        <%= form_with(model: @user, local: true) do |f| %>
+          <% if @user.image.present? %>
+            <%= image_tag @user.image.url %>
+          <% else %>
+            <%= image_tag '/images/pen-308431_640.png' %>
+          <% end %>
         <% end %>
       </div>
     </aside>

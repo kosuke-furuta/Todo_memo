@@ -4,8 +4,11 @@ class Task < ApplicationRecord
   before_validation :set_nameless_name
 
   belongs_to :user
+  validates :user_id, presence: true
+  validates :description, presence: true, length: { maximum: 140 }
 
   scope :recent, -> { order(created_at: :desc) }
+  has_one_attached :image
 
   private
 

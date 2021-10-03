@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-md-6">
+    <div class="col-lg-6">
       <h1>メモの編集</h1>
-        <%= link_to '一覧', tasks_path, class: 'nav-link' %>
+        <%= link_to '一覧', task_path(@task), class: 'nav-link' %>
         <%= render partial: 'form', locals: { task: @task } %>
     </div>
   </div>
