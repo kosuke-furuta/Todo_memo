@@ -1,24 +1,24 @@
-# README
+# Todo Memo アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### アプリのタイトル通りTodoメモアプリを作成しました。
+### アプリにユーザー登録をして、ログインすることができます。ログインできたユーザーは投稿をすることで、投稿した内容を見ることができます。
 
-Things you may want to cover:
+### アピールポイント
 
-* Ruby version
+<img width="1433" alt="スクリーンショット 2021-10-06 6 48 08" src="https://user-images.githubusercontent.com/74128973/136107786-e53a1584-e70f-4f13-afc5-2c84c748d358.png">
 
-* System dependencies
+# 使用技術
+* Ruby 3.0.2
+* Ruby on Rails 6.1.4
+* MySQL 5.7
+* AWS
+  * VPC
+  * EC2
+  * S3
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# 機能一覧
+* ユーザー登録、ログイン機能
+* 投稿機能
+  * メモ投稿機能 
+  * 画像投稿機能
+* ペジネーション機能
