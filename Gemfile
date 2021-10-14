@@ -67,3 +67,7 @@ gem 'bootstrap4-kaminari-views'
 gem 'rails_autolink'
 gem 'active_storage_validations'
 gem 'aws-sdk-s3'
+
+group :production do
+  gem 'unicorn'
+end
