@@ -51,7 +51,6 @@ test:
 production:
   <<: *default
   database: Todo_memo_production
-  username: <%= Rails.application.credentials.db[:user_name] %>
+  username: <%= Rails.application.credentials.db[:username] %>
   password: <%= Rails.application.credentials.db[:password] %>
-  socket: /var/tmp/mysql.sock
-  
+  socket: /var/tmp/mysql.sock   
