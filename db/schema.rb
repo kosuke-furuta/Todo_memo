@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_09_28_203000) do
 
   create_table "tasks", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 30, null: false
-    t.text "description"
+    t.text "description", size: :tiny
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
