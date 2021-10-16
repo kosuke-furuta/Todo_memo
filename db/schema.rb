@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_09_23_123304) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
-    t.string "name", limit: 191, null: false
+    t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
@@ -23,26 +23,26 @@ ActiveRecord::Schema.define(version: 2021_09_23_123304) do
   end
 
   create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
-    t.string "key", limit: 191, null: false
-    t.string "filename", limit: 191, null: false
-    t.string "content_type", limit: 191
-    t.text "metadata", size: :tiny
-    t.string "service_name", limit: 191, null: false
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", limit: 191, null: false
+    t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
   create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "blob_id", null: false
-    t.string "variation_digest", limit: 191, null: false
+    t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "tasks", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 30, null: false
-    t.text "description", size: :tiny
+    t.text "description"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -52,17 +52,17 @@ ActiveRecord::Schema.define(version: 2021_09_23_123304) do
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", limit: 30
-    t.string "email", limit: 191
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "password_digest", limit: 191
-    t.string "remember_digest", limit: 191
-    t.string "image", limit: 191
+    t.string "password_digest"
+    t.string "remember_digest"
+    t.string "image"
     t.boolean "admin", default: false
-    t.string "activation_digest", limit: 191
+    t.string "activation_digest"
     t.boolean "activated", default: false
     t.datetime "activated_at"
-    t.string "reset_digest", limit: 191
+    t.string "reset_digest"
     t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
