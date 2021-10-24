@@ -38,7 +38,7 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    flash[:indo] = "メモ「#{@task.name}」を削除しました。"
+    flash[:info] = "メモ「#{@task.name}」を削除しました。"
     redirect_to controller: 'users', action: 'index'
   end
   private

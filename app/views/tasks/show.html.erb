@@ -1,7 +1,8 @@
-<h1>メモの詳細</h1>
+<% provide(:title, @task.name) %>
+<h2>メモの詳細</h2>
 
 <div class="d-flex justify-content-end">
-  <%= link_to '一覧', user_path(@user), class: 'nav-link' %>
+  <%= link_to 'プロフィール', user_path(@user), class: 'nav-link' %>
 </div>
 <table class="table table-hover row_table">
   <tbody>

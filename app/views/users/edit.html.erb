@@ -2,8 +2,8 @@
 <% provide(:button_text, '変更内容を保存する') %>
 <div class="container">
   <div class="row">
-    <div class="col-lg-6">
-      <h1>プロフィールを編集</h1>
+    <div class="col-md-6">
+      <h2>プロフィールを編集</h2>
       <div class= "image">
         <%= form_with(model: @user, local: true) do |f| %>
           <% if @user.image? %>
@@ -14,11 +14,10 @@
         <% end %>
       </div>
     </div>
-    <div class="col-lg-6">
+    <div class="col-md-6">
       <div class="form-wrapper">
         <%= render 'form' %>
       </div>
     </div>
-
   </div>
 </div>

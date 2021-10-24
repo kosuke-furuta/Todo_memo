@@ -1,4 +1,4 @@
-<h1><%= current_user.name %></h1>
+<h2><%= current_user.name %></h2>
 <p><%= current_user.email %></p>
 <% if current_user.image? %>
   <%= image_tag current_user.image.url %>

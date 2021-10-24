@@ -1,7 +1,10 @@
 <% provide(:title, @user.name) %>
+<div class="d-flex justify-content-end">
+  <%= link_to "ユーザー一覧", users_path, class: "nav-link" %>
+</div>
 <div class="container">
   <div class="row">
-    <aside class="col-lg-6">
+    <aside class="col-md-4">
       <div class="image">
         <%= form_with(model: @user, local: true) do |f| %>
           <% if @user.image.present? %>
@@ -12,11 +15,11 @@
         <% end %>
       </div>
     </aside>
-    <div class="col-lg-6">
+    <div class="col-md-8">
       <section class="user_info">
-        <h1>
+        <h2>
           <%= @user.name %>
-        </h1>
+        </h2>
         <p>
           <%= @user.email %>
         <p>
@@ -24,7 +27,7 @@
     </div>
   </div>
 </div>
-<h1>Todo Memo 一覧</h1>
+<h2>Todo Memo 一覧</h2>
 <div class="btn_wrapper">
   <%= link_to '新規登録', new_task_path, class: 'btn btn-panel2' %>
 </div>

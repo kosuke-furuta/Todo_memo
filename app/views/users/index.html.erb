@@ -1,6 +1,6 @@
 <% provide(:title, 'All users') %>
 <div class="row">
-  <aside class="col-lg-4">
+  <aside class="col-md-4">
   <h2>ログインユーザー</h2>
     <section class="user_info">
       <%= render 'shared/user_info' %>
@@ -8,8 +8,8 @@
     <span><%= link_to "プロフィールを見る",
               current_user %></span>
   </aside>
-  <div class="col-lg-8">
-  <h1>ユーザー一覧</h1>
+  <div class="col-md-8">
+  <h2>ユーザー一覧</h2>
   <ul class="users">
     <%= render @users %>
   </ul>
