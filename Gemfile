@@ -71,3 +71,5 @@ gem 'aws-sdk-s3'
 group :production do
   gem 'unicorn'
 end
+
+gem 'fog-aws'
