@@ -15,6 +15,7 @@ CarrierWave.configure do |config|
     }
     config.fog_directory  = 'rails-photo-kosuke'
     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/rails-photo-kosuke'
+    config fog_public = false
   else
     config.storage :file
     config.enable_processing = false if Rails.env.test?
