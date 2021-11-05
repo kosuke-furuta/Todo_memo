@@ -1,6 +1,6 @@
 # メインのサンプルユーザーを1人作成する
-User.create!(name: "吉田 麻也",
-             email: "maya@example.jp",
+User.create!(name: "ゲスト ユーザー",
+             email: "guest@example.com",
              password: "password",
              password_confirmation: "password",
              admin: true,
