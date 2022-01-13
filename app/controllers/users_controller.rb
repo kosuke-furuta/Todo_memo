@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     redirect_to root_url and return unless @user.activated?
     @image = @user.image
     @tasks = @user.tasks
+    @bookmark_tasks = @user.bookmark_tasks
   end
 
   def new

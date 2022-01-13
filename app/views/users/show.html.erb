@@ -41,3 +41,18 @@
   </tr>
 <%= render @tasks %>
 </table>
+
+<% @tasks.each do |task| %>
+
+  <div id="bookmark_<%= task.id %>">
+    <%= render partial: 'bookmarks/bookmark', locals: { task: task } %>
+  </div>
+
+<%= link_to task_path(task), method: :delete do %>
+          <i class="fas fa-trash"></i>
+        <% end %>
+        <%= link_to edit_task_path(task) do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+
+<% end %>

@@ -14,6 +14,11 @@ class User < ApplicationRecord
 
   has_one_attached :image
 
+  # ユーザー → お気に入り
+  has_many :bookmarks
+  # 中間テーブル
+  has_many :bookmark_tasks, through: :bookmarks, source: :task
+
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :

@@ -10,6 +10,14 @@ class Task < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
   has_one_attached :image
 
+  # タスク → お気に入り
+  has_many :bookmarks
+
+  # 既にbookmarkしていないか検証
+  def bookmarked_by?(user)
+    bookmarks.where(user_id: user).exists?
+  end
+
   private
 
   def validate_name_not_inculuding_comma

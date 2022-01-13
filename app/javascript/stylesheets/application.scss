@@ -1,4 +1,4 @@
-@import '~bootstrap/scss/bootstrap';
+@import 'bootstrap/scss/bootstrap';
 
 /* Fonts */
 @import
@@ -397,3 +397,6 @@ th {
     font-size: 1.2em;
   }
 }
+
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
