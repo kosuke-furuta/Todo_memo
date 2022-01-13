@@ -55,7 +55,6 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'bootstrap-sass', '3.4.1'
 gem 'faker', '2.1.2'
 gem 'gimei'
 gem 'carrierwave'
@@ -67,7 +66,8 @@ gem 'bootstrap4-kaminari-views'
 gem 'rails_autolink'
 gem 'active_storage_validations'
 gem 'aws-sdk-s3'
-gem 'font-awesome-sass'
+
+gem 'jquery-rails'
 
 group :production do
   gem 'unicorn'
