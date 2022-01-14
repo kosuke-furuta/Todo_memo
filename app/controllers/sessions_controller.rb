@@ -3,21 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user &.authenticate(params[:session][:password])
-      if user.activated?
-        log_in user
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-        redirect_back_or user
-      else
-        message = "アカウントがアクティブ化されていません。"
-        message += "アクティベーションリンクについては、メールを確認してください。"
-        flash[:warning] = message
-        redirect_to root_url
-      end
+    user = User.find_by(email: params[:session][:email].downcase) # params[:session]にはpasswod:、email:のハッシュが含まれる。
+    # &. ぼっち演算子 if user && user.authenticate → if user&.authenticateに省略
+    if user &.authenticate(params[:session][:password]) # 正しいパスワード (true && true) == true # authenticateは認証失敗時falseを返す
+      log_in user
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user) # チェックボックスがオンの時に'1'になる。オフの時に'0'になる
+      redirect_back_or user
     else
       flash.now[:danger] = 'メールとパスワードの組み合わせが無効です。'
-      render 'new'
+      render :new
     end
   end
 

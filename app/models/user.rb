@@ -1,101 +1,52 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token, :reset_token
+  attr_accessor :remember_token # データベースに保存はしない、仮装の属性remmber_tokenを作成
   before_save :downcase_email
-  before_create :create_activation_digest
-  validates :name, presence: true, length: { maximum:50 }
-  validates :email, presence: true, length: { maximum:255 },
-              uniqueness: true
+  # セキュアにハッシュ化したパスワードをデータベース内のpassword_digestという属性に保存できる
+  # 仮想的な属性passwordとpassword_confirmationが使えるようになる。存在性と値が一致するかどうかのバリデーションも追加される
+  # authenticateメソッドが使える (引数の文字列がパスワードと一致するとUserオブジェクトを、間違っているとfalseを返すメソッド) 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-  
-  mount_uploader :image, ImageUploader
+
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :email, presence: true, length: { maximum: 100 },
+                                    uniqueness: true
+  validates :password, presence: true, length: { minimum: 15 }, allow_nil: true
 
   has_many :tasks, dependent: :destroy
-
-  has_one_attached :image
-
   # ユーザー → お気に入り
   has_many :bookmarks
   # 中間テーブル
   has_many :bookmark_tasks, through: :bookmarks, source: :task
 
+  mount_uploader :image, ImageUploader
+
+  has_one_attached :image
+
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                              BCrypt::Engine.cost
+                                                  BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
   # ランダムなトークンを返す
   def User.new_token
-    SecureRandom.urlsafe_base64
+    SecureRandom.urlsafe_base64 # 長さ22のランダムな文字列を返す
   end
 
   # 永続セッションのためにユーザーをデータベースに記憶する
   def remember
-    self.remember_token = User.new_token
-    update_attribute(:remember_digest, User.digest(remember_token))
+    self.remember_token = User.new_token # selfをつけることでローカル変数の作成を防ぐ
+    update_attribute(:remember_digest, User.digest(remember_token)) # update_attributeメソッドで記憶ダイジェストを更新。検証を回避する効果。今回はユーザーのパスワードやパスワード確認にアクセスできないので、バリデーションを素通りさせなければいけない 
   end
 
-  # トークンがダイジェストと一致したらtrueを返す
+  # 渡されたトークンがダイジェストと一致したらtrueを返す
   def authenticated?(attribute, token)
-    digest = send("#{attribute}_digest")
     return false if digest.nil?
-    BCrypt::Password.new(digest).is_password?(token)
+    BCrypt::Password.new(digest).is_password?(remember_token) # remember_digestとremember_tokenが同一かどうか調べるメソッド
   end
 
   # ユーザーのログイン情報を破棄する
   def forget
-    update_attribute(:remember_digest, nil)
-  end
-
-  # メールアドレスをすべて小文字にする
-  def downcase_email
-    self.email = email.downcase
-  end
-
-  # 有効化トークンとダイジェストを作成および代入する
-  def create_activation_digest
-    self.activation_token  = User.new_token
-    self.activation_digest = User.digest(activation_token)
-  end
-
-  # アカウントを有効にする
-  def activate
-    update_columns(activated: true, activated_at: Time.zone.now)
-  end
-
-  # 有効化用のメールを送信する
-  def send_activation_email
-    UserMailer.account_activation(self).deliver_now
-  end
-
-  # パスワード再設定の属性を設定する
-  def create_reset_digest
-    self.reset_token = User.new_token
-    update_columns(reset_digest: User.digest(reset_token), reset_sent_at: Time.zone.now)
-  end
-  
-  # パスワード再設定のメールを送信する
-  def send_password_reset_email
-    UserMailer.password_reset(self).deliver_now
-  end
-
-  # パスワード再設定の期限が切れている場合はtrueを返す
-  def password_reset_expired?
-    reset_sent_at < 2.hours.ago
-  end
-
-  private
-
-  # メールアドレスをすべて小文字にする
-  def downcase_email
-    self.email = email.downcase
-  end
-
-  # 有効化トークンとダイジェストを作成および代入する
-  def create_activation_digest
-    self.activation_token  = User.new_token
-    self.activation_digest = User.digest(activation_token)
+    update_attribute(:remember_digest, nil) # user.forgetメソッドによってuser.rememberが取り消される
   end
 end

@@ -3,27 +3,25 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
+  def new
+    @user = User.new
+  end
+
   def show
     @user = User.find(params[:id])
-    redirect_to root_url and return unless @user.activated?
     @image = @user.image
     @tasks = @user.tasks
     @bookmark_tasks = @user.bookmark_tasks
   end
-
-  def new
-    @user = User.new
-  end
   
   def create
-    @user = User.new(user_params)
-
+    @user = User.new(user_params) # userを作成。userの必要な情報のみ抜き取る
     if @user.save
-      @user.send_activation_email
-      flash[:info] = "メールをチェックしてアカウントを有効にしてください。"
-      redirect_to root_url
+      log_in @user # ユーザー登録中にログインを済ませておく
+      flash[:success] = 'アプリへようこそ'
+      redirect_to @user # @userのurlに遷都させる
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -39,7 +37,7 @@ class UsersController < ApplicationController
         flash[:success] = "プロフィールを更新しました。"
         redirect_to @user
       else
-        render 'edit'
+        render :edit
       end
     else
       redirect_to root_url
@@ -64,7 +62,6 @@ class UsersController < ApplicationController
   end
 
   # beforeアクション
-
   # 正しいユーザーかどうか確認
   def correct_user
     @user = User.find(params[:id])
