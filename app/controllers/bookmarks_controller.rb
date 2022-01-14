@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
   def create
     @task = Task.find(params[:task_id])
-    bookmark = current_user.bookmark.new(task_id: @task.id)
+    bookmark = current_user.bookmarks.new(task_id: @task.id)
     bookmark.save
   end
 
