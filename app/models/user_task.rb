@@ -1,3 +1,0 @@
-class UserTask < ApplicationRecord
-  
-end

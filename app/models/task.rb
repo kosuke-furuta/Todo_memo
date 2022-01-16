@@ -3,19 +3,20 @@ class Task < ApplicationRecord
   validate :validate_name_not_inculuding_comma
   before_validation :set_nameless_name
 
-  belongs_to :user
   validates :user_id, presence: true
   validates :description, presence: true, length: { maximum: 140 }
 
   scope :recent, -> { order(created_at: :desc) }
   has_one_attached :image
 
+  belongs_to :user
   # タスク → お気に入り
-  has_many :bookmarks
+  has_many :favorites, dependent: :destroy
+  
 
-  # 既にbookmarkしていないか検証
-  def bookmarked_by?(user)
-    bookmarks.where(user_id: user).exists?
+  # 既にお気に入りしていないか検証
+  def favorited_by?(user)
+    favorites.where(user_id: user).exists?
   end
 
   private

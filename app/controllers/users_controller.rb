@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @image = @user.image
     @tasks = @user.tasks
-    @bookmark_tasks = @user.bookmark_tasks
+    @favorite_tasks = @user.favorite_tasks
   end
   
   def create

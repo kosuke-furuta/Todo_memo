@@ -20,7 +20,6 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params.merge(user_id: current_user.id))
-    @task.image.attach(params[:task][:image])
     if @task.save
       flash[:info] = "メモ「#{@task.name} 」を登録しました。"
       redirect_to @task

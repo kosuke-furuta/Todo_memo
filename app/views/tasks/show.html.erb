@@ -29,9 +29,7 @@
     </tr>
   </tbody>
 </table>
-<span class="content">
-  <%= image_tag @task.image if @task.image.attached? %>
-</span>
+
 <div class="btn_wrapper">
   <%= link_to '編集', edit_task_path, class: 'btn btn-outline-primary' %>
   <%= link_to '削除', @task, method: :delete,

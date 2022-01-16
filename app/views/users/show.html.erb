@@ -10,7 +10,7 @@
           <% if @user.image.present? %>
             <%= image_tag @user.image.url %>
           <% else %>
-            <%= image_tag '/images/pen-308431_640.png' %>
+
           <% end %>
         <% end %>
       </div>
@@ -44,8 +44,8 @@
 
 <% @tasks.each do |task| %>
 
-  <div id="bookmark_<%= task.id %>">
-    <%= render partial: 'bookmarks/bookmark', locals: { task: task } %>
+  <div id="favorite_<%= task.id %>">
+    <%= render partial: 'favorites/favorite', locals: { task: task } %>
   </div>
 
 <%= link_to task_path(task), method: :delete do %>

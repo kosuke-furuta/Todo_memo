@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :remember_token # データベースに保存はしない、仮装の属性remmber_tokenを作成
-  before_save :downcase_email
+  before_save { self.email = email.downcase }
   # セキュアにハッシュ化したパスワードをデータベース内のpassword_digestという属性に保存できる
   # 仮想的な属性passwordとpassword_confirmationが使えるようになる。存在性と値が一致するかどうかのバリデーションも追加される
   # authenticateメソッドが使える (引数の文字列がパスワードと一致するとUserオブジェクトを、間違っているとfalseを返すメソッド) 
@@ -9,13 +9,13 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30 }
   validates :email, presence: true, length: { maximum: 100 },
                                     uniqueness: true
-  validates :password, presence: true, length: { minimum: 15 }, allow_nil: true
+  validates :password, presence: true, length: { minimum: 8 }, allow_nil: true
 
   has_many :tasks, dependent: :destroy
   # ユーザー → お気に入り
-  has_many :bookmarks
+  has_many :favorites
   # 中間テーブル
-  has_many :bookmark_tasks, through: :bookmarks, source: :task
+  has_many :favorite_tasks, through: :favorites, source: :task
 
   mount_uploader :image, ImageUploader
 

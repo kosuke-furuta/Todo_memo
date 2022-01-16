@@ -3,7 +3,6 @@ User.create!(name: "ゲスト ユーザー",
              email: "guest@example.com",
              password: "password",
              password_confirmation: "password",
-             admin: true,
              activated: true,
              activated_at: Time.zone.now)
 

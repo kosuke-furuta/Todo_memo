@@ -10,6 +10,6 @@ root 'static_pages#home'
   delete 'logout', to: 'sessions#destroy'
   resources :users
   resources :tasks do
-    resource :bookmarks, only: [:create, :destroy]
+    resource :favorites, only: [:create, :destroy]
   end
 end
